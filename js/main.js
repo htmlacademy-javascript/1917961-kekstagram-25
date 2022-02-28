@@ -16,7 +16,7 @@ const BEGIN_INT_FOR_CALC_COUNT_LIKES = 15;
 const END_INT_FOR_CALC_COUNT_LIKES = 200;
 const COUNT_PHOTO = 25;
 
-const DESCRIPTION_FOR_PHOTO = [
+const DESCRIPTIONS_FOR_PHOTO = [
   'Когда радости нет предела',
   'Грусть, я тебя не боюсь',
   'Поднимаю настроение мини–фотосессией',
@@ -34,10 +34,10 @@ const DESCRIPTION_FOR_PHOTO = [
   'Досадно, но ладно'];
 
 
-const NAME_AUTHOR = ['Святослав', 'Доброжир', 'Тихомир', 'Ратибор', 'Ярополк', 'Гостомысл',
+const NAMES_AUTHOR = ['Святослав', 'Доброжир', 'Тихомир', 'Ратибор', 'Ярополк', 'Гостомысл',
   'Велимудр', 'Всеволод', 'Богдан', 'Доброгнева', 'Любомила', 'Миролюб', 'Светозар', 'Милонег'];
 
-const MESSAGE = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -46,7 +46,7 @@ const MESSAGE = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-const arryaIdPhotoDescription = Array.from({ length: COUNT_PHOTO }, (value, key) => key + 1);
+const arrayIdPhotoDescription = Array.from({ length: COUNT_PHOTO }, (value, key) => key + 1);
 
 const getRandomValueArray = (arrayFromGetValue) => arrayFromGetValue[getRandomInteger(0, arrayFromGetValue.length - 1)];
 
@@ -59,23 +59,24 @@ const getRandomIdentifier = (arrayFromGetIdentifier) => {
 
 let idComments = 0;
 
-const creatComments = () => ({
+const createComments = () => ({
   id: ++idComments,
   avatar: `img/avatar-${getRandomInteger(BEGIN_INT_FOR_CALC_NUMBER_AVATAR, END_INT_FOR_CALC_NUMBER_AVATAR)}.svg`,
-  message: getRandomValueArray(MESSAGE),
-  name: getRandomValueArray(NAME_AUTHOR)
+  message: getRandomValueArray(MESSAGES),
+  name: getRandomValueArray(NAMES_AUTHOR)
 });
 
-const creatPhotoDescription = () => {
-  const indentifier = getRandomIdentifier(arryaIdPhotoDescription);
+const createPhotoDescription = () => {
+  const indentifier = getRandomIdentifier(arrayIdPhotoDescription);
   return {
     id: indentifier,
     url: `photos/${indentifier}.jpg`,
-    description: getRandomValueArray(DESCRIPTION_FOR_PHOTO),
+    description: getRandomValueArray(DESCRIPTIONS_FOR_PHOTO),
     likes: getRandomInteger(BEGIN_INT_FOR_CALC_COUNT_LIKES, END_INT_FOR_CALC_COUNT_LIKES),
-    comments: Array.from({ length: getRandomInteger(1, MAX_COUNT_COMMENTS) }, creatComments)
+    comments: Array.from({ length: getRandomInteger(1, MAX_COUNT_COMMENTS) }, createComments)
   };
 };
 
-const arryaPhoto = Array.from({ length: COUNT_PHOTO }, creatPhotoDescription);
-throw arryaPhoto;
+const arrayPhoto = Array.from({ length: COUNT_PHOTO }, createPhotoDescription);
+console.log(arrayPhoto);
+//throw arrayPhoto;
