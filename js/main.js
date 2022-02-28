@@ -78,5 +78,4 @@ const createPhotoDescription = () => {
 };
 
 const arrayPhoto = Array.from({ length: COUNT_PHOTO }, createPhotoDescription);
-console.log(arrayPhoto);
-//throw arrayPhoto;
+throw arrayPhoto;
