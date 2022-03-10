@@ -6,11 +6,14 @@ const previewsElements = createPhotoDescriptions();
 const previewFragment = document.createDocumentFragment();
 
 previewsElements.forEach(({id, url, description, likes, comments}) => {
-    const previewsElement = templatePreview.cloneNode(true);
-    previewsElement.querySelector('.picture__img').src = url;
-    previewsElement.querySelector('.picture__comments').textContent = comments.length;    
-    previewsElement.querySelector('.picture__likes').textContent = likes;
-    previewFragment.appendChild(previewsElement);
+  const previewsElement = templatePreview.cloneNode(true);
+  const pictureImg = previewsElement.querySelector('.picture__img');
+  pictureImg.id = id;
+  pictureImg.src = url;
+  pictureImg.alt = description;
+  previewsElement.querySelector('.picture__comments').textContent = comments.length;
+  previewsElement.querySelector('.picture__likes').textContent = likes;
+  previewFragment.appendChild(previewsElement);
 });
 
 pictures.appendChild(previewFragment);
