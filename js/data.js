@@ -3,12 +3,9 @@ import {
   BEGIN_INT_FOR_CALC_COUNT_LIKES, END_INT_FOR_CALC_COUNT_LIKES, DESCRIPTIONS_FOR_PHOTO, NAMES_AUTHOR, MESSAGES
 } from './const.js';
 import {
-  getRandomInteger, checkLengthString, getRandomValueFromArray,
+  getRandomInteger, getRandomValueFromArray,
   createArrayIndexInValue, deleteRandomValueFromArray
 } from './util.js';
-
-checkLengthString('Ryzhkov Anatoly', 9);
-
 
 let idComments = 0;
 

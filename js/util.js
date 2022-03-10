@@ -3,8 +3,6 @@ const getRandomInteger = (beginInteger, endInteger) => {
   return Math.floor(Math.random() * (rangeInteger) + Math.min(beginInteger, endInteger));
 };
 
-const checkLengthString = (stringCheck, maxLengthString) => maxLengthString >= stringCheck.length;
-
 const getRandomValueFromArray = (arrayFromGetValue) => arrayFromGetValue[getRandomInteger(0, arrayFromGetValue.length - 1)];
 
 const createArrayIndexInValue = (count) => Array.from({ length: count }, (value, key) => key + 1);
@@ -14,4 +12,4 @@ const deleteRandomValueFromArray = (arrayFromGetIdentifier) => {
   return arrayFromGetIdentifier.splice(index, 1)[0];
 };
 
-export { getRandomInteger, checkLengthString, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray };
+export { getRandomInteger, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray };
