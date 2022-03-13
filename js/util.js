@@ -12,4 +12,16 @@ const deleteRandomValueFromArray = (arrayFromGetIdentifier) => {
   return arrayFromGetIdentifier.splice(index, 1)[0];
 };
 
-export { getRandomInteger, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray };
+const removeAllChildren = (parent) => {
+  const elements = parent.children;
+  for (let i = elements.length - 1; i >= 0; i--) {
+    elements[i].remove();
+  }
+};
+
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {
+  getRandomInteger, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray, removeAllChildren,
+  isEscapeKey
+};
