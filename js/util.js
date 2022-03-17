@@ -1,7 +1,11 @@
+import {HASHTAG_AS_REGULAR_EXPRESSION} from './const.js';
+
 const getRandomInteger = (beginInteger, endInteger) => {
   const rangeInteger = Math.abs(Math.abs(endInteger) - Math.abs(beginInteger)) + 1;
   return Math.floor(Math.random() * (rangeInteger) + Math.min(beginInteger, endInteger));
 };
+
+const checkLengthString = (stringCheck, maxLengthString) => maxLengthString >= stringCheck.length;
 
 const getRandomValueFromArray = (arrayFromGetValue) => arrayFromGetValue[getRandomInteger(0, arrayFromGetValue.length - 1)];
 
@@ -13,15 +17,40 @@ const deleteRandomValueFromArray = (arrayFromGetIdentifier) => {
 };
 
 const removeAllChildren = (parent) => {
-  const elements = parent.children;
-  for (let i = elements.length - 1; i >= 0; i--) {
-    elements[i].remove();
-  }
+  parent.innerHTML = '';
 };
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
+const deleteExcessSpase = (originalString) => originalString.replace(/\s+/g, ' ').trim();
+
+function checkValidateHashtag(array) {
+  let isValid = false;
+  for (let i = 0; i < array.length; i++) {
+    isValid = HASHTAG_AS_REGULAR_EXPRESSION.test(array[i]);
+    if (!isValid) {
+      return isValid;
+    }
+  }
+  return isValid;
+}
+
+function checkUniqueHashtags(array) {
+  let isValid = true;
+  for (let i = 0; i < array.length; i++) {
+    isValid = array.indexOf(array[i], i + 1) < 0;
+    if (!isValid) {
+      return isValid;
+    }
+  }
+  return isValid;
+}
+
+function checkCountHashtags(array, count) {
+  return array.length <= count;
+}
+
 export {
   getRandomInteger, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray, removeAllChildren,
-  isEscapeKey
+  isEscapeKey, deleteExcessSpase, checkValidateHashtag, checkUniqueHashtags, checkCountHashtags, checkLengthString
 };

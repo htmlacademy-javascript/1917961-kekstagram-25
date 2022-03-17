@@ -1,9 +1,15 @@
 const COUNT_PHOTO = 25;
 const MAX_COUNT_COMMENTS = 7;
-const BEGIN_INT_FOR_CALC_NUMBER_AVATAR =1;
+const BEGIN_INT_FOR_CALC_NUMBER_AVATAR = 1;
 const END_INT_FOR_CALC_NUMBER_AVATAR = 6;
 const BEGIN_INT_FOR_CALC_COUNT_LIKES = 15;
 const END_INT_FOR_CALC_COUNT_LIKES = 200;
+const TAG_BODY = document.querySelector('body');
+const SPACE_AS_REGULAR_EXPRESSION = /\s/;
+const HASHTAG_AS_REGULAR_EXPRESSION = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+const MAX_COUNT_HASHTAGS = 5;
+const LENGTH_COMMENT = 140;
+const OUTPUT_PRISTINE_MESSAGE_HASHTAGS = 'Хэш-тег начинается с символа # (решётка). Хеш-тег не может состоять только из одной решётки. Строка после решётки должна состоять из букв и чисел. Максимальная длина одного хэш-тега 20 символов, включая решётку. Хэш-теги нечувствительны к регистру. Хэш-теги разделяются пробелами. Один и тот же хэш-тег не может быть использован дважды. Нельзя указать больше пяти хэш-тегов.';
 
 const DESCRIPTIONS_FOR_PHOTO = [
   'Когда радости нет предела',
@@ -35,5 +41,8 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-export {COUNT_PHOTO, MAX_COUNT_COMMENTS, BEGIN_INT_FOR_CALC_NUMBER_AVATAR, END_INT_FOR_CALC_NUMBER_AVATAR,
-  BEGIN_INT_FOR_CALC_COUNT_LIKES, END_INT_FOR_CALC_COUNT_LIKES, DESCRIPTIONS_FOR_PHOTO, NAMES_AUTHOR, MESSAGES};
+export {
+  COUNT_PHOTO, MAX_COUNT_COMMENTS, BEGIN_INT_FOR_CALC_NUMBER_AVATAR, END_INT_FOR_CALC_NUMBER_AVATAR,
+  BEGIN_INT_FOR_CALC_COUNT_LIKES, END_INT_FOR_CALC_COUNT_LIKES, DESCRIPTIONS_FOR_PHOTO, NAMES_AUTHOR, MESSAGES, TAG_BODY,
+  SPACE_AS_REGULAR_EXPRESSION, HASHTAG_AS_REGULAR_EXPRESSION, MAX_COUNT_HASHTAGS, LENGTH_COMMENT, OUTPUT_PRISTINE_MESSAGE_HASHTAGS
+};
