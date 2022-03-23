@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { TAG_BODY, LOADER_COMMENTS } from './const.js';
-import { outputСomment, onLoaderCommentsClick } from './comments.js';
+import { outputComment, onLoaderCommentsClick } from './comments.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const buttonBigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
@@ -29,7 +29,7 @@ function openBigPicture(picture, pictureDescription) {
   picture.classList.remove('hidden');
   document.addEventListener('keydown', onBigPictureEscKeydown);
   buttonBigPictureCancel.addEventListener('click', onButtonBigPictureCancelClick);
-  outputСomment(pictureDescription);
+  outputComment(pictureDescription);
   TAG_BODY.classList.add('modal-open');
 }
 

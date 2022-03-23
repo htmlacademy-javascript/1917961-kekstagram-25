@@ -42,7 +42,7 @@ const onLoaderCommentsClick = () => {
   fillCommentsCountView(currentPictureDescription);
 };
 
-const outputСomment = (pictureDescription) => {
+const outputComment = (pictureDescription) => {
   removeAllChildren(socialComments);
   movePointerToStart(pictureDescription);
   fillCommentsView(pictureDescription);
@@ -51,4 +51,4 @@ const outputСomment = (pictureDescription) => {
   LOADER_COMMENTS.addEventListener('click', onLoaderCommentsClick);
 };
 
-export { fillCommentsView as fillComments, outputСomment, onLoaderCommentsClick };
+export {  outputComment, onLoaderCommentsClick };
