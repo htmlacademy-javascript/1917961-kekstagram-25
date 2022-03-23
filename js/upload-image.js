@@ -1,5 +1,5 @@
 import { TAG_BODY, SPACE_AS_REGULAR_EXPRESSION, MAX_COUNT_HASHTAGS, LENGTH_COMMENT, OUTPUT_PRISTINE_MESSAGE_HASHTAGS } from './const.js';
-import {deleteExcessSpase, checkValidateHashtag, checkUniqueHashtags, checkCountHashtags, checkLengthString, isEscapeKey} from './util.js';
+import { deleteExcessSpase, checkValidateHashtag, checkUniqueHashtags, checkArrayLength, checkLengthString, isEscapeKey } from './util.js';
 
 const uploadPicture = document.querySelector('#upload-file');
 const visableFormUploadPicture = document.querySelector('.img-upload__overlay');
@@ -41,33 +41,27 @@ function validateHashtags(stringHashtags) {
   if (!stringHashtags) {
     return true;
   }
-
-  const preparedStringHashtags =  prepareStringHashtags(stringHashtags);
+  const preparedStringHashtags = prepareStringHashtags(stringHashtags);
   const wordsHashtags = preparedStringHashtags.split(SPACE_AS_REGULAR_EXPRESSION);
+  return checkArrayLength(wordsHashtags, MAX_COUNT_HASHTAGS)
+    && checkUniqueHashtags(wordsHashtags)
+    && checkValidateHashtag(wordsHashtags);
 
-  const itsCountHashtags = checkCountHashtags(wordsHashtags, MAX_COUNT_HASHTAGS);
-  const itsUniqueHashtags = checkUniqueHashtags(wordsHashtags);
-  const itsValidateHashtag =  checkValidateHashtag(wordsHashtags);
-
-  if (itsCountHashtags && itsUniqueHashtags && itsValidateHashtag) {
-    return true;
-  }
-  return false;
 }
 
 pristine.addValidator(inputHashtags, validateHashtags, OUTPUT_PRISTINE_MESSAGE_HASHTAGS);
 
-function validateComment (stringComment) {
+function validateComment(stringComment) {
   return checkLengthString(stringComment, LENGTH_COMMENT);
 }
 
 pristine.addValidator(inputComment, validateComment, 'Комментарий больше 140 символов.');
 
-function addListenerKeydownEsc () {
+function addListenerKeydownEsc() {
   document.addEventListener('keydown', onFormUploadPictureEscKeydown);
 }
 
-function removeListenerKeydownEsc () {
+function removeListenerKeydownEsc() {
   document.removeEventListener('keydown', onFormUploadPictureEscKeydown);
 }
 

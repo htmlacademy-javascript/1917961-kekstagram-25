@@ -13,7 +13,7 @@ const createComments = () => ({
   id: ++idComments,
   avatar: `img/avatar-${getRandomInteger(BEGIN_INT_FOR_CALC_NUMBER_AVATAR, END_INT_FOR_CALC_NUMBER_AVATAR)}.svg`,
   message: getRandomValueFromArray(MESSAGES),
-  name: getRandomValueFromArray(NAMES_AUTHOR)
+  name: getRandomValueFromArray(NAMES_AUTHOR),
 });
 
 const arrayIdPhotoDescription = createArrayIndexInValue(COUNT_PHOTO);
@@ -25,7 +25,8 @@ const createPhotoDescription = () => {
     url: `photos/${indentifier}.jpg`,
     description: getRandomValueFromArray(DESCRIPTIONS_FOR_PHOTO),
     likes: getRandomInteger(BEGIN_INT_FOR_CALC_COUNT_LIKES, END_INT_FOR_CALC_COUNT_LIKES),
-    comments: Array.from({ length: getRandomInteger(1, MAX_COUNT_COMMENTS) }, createComments)
+    comments: Array.from({ length: getRandomInteger(1, MAX_COUNT_COMMENTS) }, createComments),
+    pointerViewComments: 0
   };
 };
 
