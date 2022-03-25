@@ -10,8 +10,8 @@ import { addZoom, removeZoom, transformScale } from './zoom.js';
 import { addEffect, removeEffect } from './effect.js';
 
 const uploadPicture = FORM_UPLOAD_PICTURE.querySelector('#upload-file');
-const visableFormUploadPicture = FORM_UPLOAD_PICTURE.querySelector('.img-upload__overlay');
-const buttonPictureUploadCancel = visableFormUploadPicture.querySelector('.img-upload__cancel');
+const visibleFormUploadPicture = FORM_UPLOAD_PICTURE.querySelector('.img-upload__overlay');
+const buttonPictureUploadCancel = visibleFormUploadPicture.querySelector('.img-upload__cancel');
 const inputHashtags = FORM_UPLOAD_PICTURE.querySelector('#hashtags');
 const inputComment = FORM_UPLOAD_PICTURE.querySelector('#add__comment');
 
@@ -79,7 +79,7 @@ inputComment.addEventListener('focus', removeListenerKeydownEsc);
 inputComment.addEventListener('blur', addListenerKeydownEsc);
 
 function openFormUploadPicture() {
-  visableFormUploadPicture.classList.remove('hidden');
+  visibleFormUploadPicture.classList.remove('hidden');
   document.addEventListener('keydown', onFormUploadPictureEscKeydown);
   addZoom();
   addEffect();
@@ -87,7 +87,7 @@ function openFormUploadPicture() {
 }
 
 function closeFormUploadPicture() {
-  visableFormUploadPicture.classList.add('hidden');
+  visibleFormUploadPicture.classList.add('hidden');
   TAG_BODY.classList.remove('modal-open');
   uploadPicture.value = '';
   document.removeEventListener('keydown', onFormUploadPictureEscKeydown);

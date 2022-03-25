@@ -5,7 +5,7 @@ import {
 const imagePreview = IMAGE_PREVIEW.querySelector('img');
 const sliderElement = IMAGE_UPLOAD.querySelector('.effect-level__slider');
 const effectLevelValue = IMAGE_UPLOAD.querySelector('.effect-level__value');
-let radioButtom = '';
+let radioButton = '';
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -31,7 +31,7 @@ noUiSlider.create(sliderElement, {
 sliderElement.noUiSlider.on('update', () => {
   effectLevelValue.value = sliderElement.noUiSlider.get();
   if (imagePreview.className) {
-    imagePreview.style.filter = `${EFFECTS_SETTINGS[radioButtom.value].filter}(${effectLevelValue.value}${EFFECTS_SETTINGS[radioButtom.value].unit})`;
+    imagePreview.style.filter = `${EFFECTS_SETTINGS[radioButton.value].filter}(${effectLevelValue.value}${EFFECTS_SETTINGS[radioButton.value].unit})`;
   }
 });
 
@@ -48,7 +48,7 @@ const updateEffect = (effect) => {
 
 const onEffectChange = (evt) => {
   if (evt.target.matches(INPUT_EFFECT_RADIO)) {
-    radioButtom = evt.target;
+    radioButton = evt.target;
     imagePreview.className = EFFECTS_SETTINGS[evt.target.value].class;
     if (!(evt.target.value === EFFECT_NONE)) {
       sliderElement.style.visibility = 'visible';
@@ -67,7 +67,7 @@ const addEffect = () => {
 
 const removeEffect = () => {
   FORM_UPLOAD_PICTURE.removeEventListener('change', onEffectChange);
-  radioButtom = '';
+  radioButton = '';
   imagePreview.style.filter = EFFECTS_SETTINGS[EFFECT_NONE].filter;
   imagePreview.className = EFFECTS_SETTINGS[EFFECT_NONE].class;
 };

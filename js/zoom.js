@@ -1,4 +1,6 @@
-import { IMAGE_SCALE_STEP, IMAGE_SCALE_MAX, IMAGE_SCALE_MIN, IMAGE_UPLOAD, IMAGE_PREVIEW  } from './const.js';
+import {
+  IMAGE_SCALE_STEP, IMAGE_SCALE_MAX, IMAGE_SCALE_MIN, IMAGE_UPLOAD, IMAGE_PREVIEW, RADIX_DECEMAL, ONE_HUNDRED_PRECENT
+} from './const.js';
 
 const imgScale = IMAGE_UPLOAD.querySelector('.img-upload__scale');
 const scaleSmaller = imgScale.querySelector('.scale__control--smaller');
@@ -8,10 +10,10 @@ const imagePreview = IMAGE_PREVIEW.querySelector('img');
 
 const transformScale = (scale) => {
   scaleValue.value = `${scale}%`;
-  imagePreview.style.transform = `scale(${scale / 100})`;
+  imagePreview.style.transform = `scale(${scale / ONE_HUNDRED_PRECENT})`;
 };
 
-const scaleValueInt = () => parseInt(scaleValue.value, 10);
+const scaleValueInt = () => parseInt(scaleValue.value, RADIX_DECEMAL);
 
 const onScaleSmaller = () => {
   let scaleInt = scaleValueInt();
