@@ -1,20 +1,19 @@
 import { isEscapeKey } from './util.js';
-import { TAG_BODY, LOADER_COMMENTS } from './const.js';
+import { TAG_BODY, LOADER_COMMENTS, FULL_SCREEN_IMAGE_DISPLAY } from './const.js';
 import { outputComment, onLoaderCommentsClick } from './comments.js';
 
-const bigPicture = document.querySelector('.big-picture');
-const buttonBigPictureCancel = bigPicture.querySelector('.big-picture__cancel');
+const buttonBigPictureCancel = FULL_SCREEN_IMAGE_DISPLAY.querySelector('.big-picture__cancel');
 
 
 const onBigPictureEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
-    bigPicture.classList.add('hidden');
+    FULL_SCREEN_IMAGE_DISPLAY.classList.add('hidden');
     closeBigPicture();
   }
 };
 
 const onButtonBigPictureCancelClick = () => {
-  bigPicture.classList.add('hidden');
+  FULL_SCREEN_IMAGE_DISPLAY.classList.add('hidden');
   closeBigPicture();
 };
 
@@ -43,8 +42,8 @@ function closeBigPicture() {
 const addHandlerClickPreviews = (previewsElement, bigPictureDescription) => {
   previewsElement.addEventListener('click', (evt) => {
     evt.preventDefault();
-    fullBigPicture(bigPicture, bigPictureDescription);
-    openBigPicture(bigPicture, bigPictureDescription);
+    fullBigPicture(FULL_SCREEN_IMAGE_DISPLAY, bigPictureDescription);
+    openBigPicture(FULL_SCREEN_IMAGE_DISPLAY, bigPictureDescription);
   });
 };
 

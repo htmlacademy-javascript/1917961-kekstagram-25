@@ -1,7 +1,7 @@
-import {createPhotoDescriptions} from './data.js';
-import {addHandlerClickPreviews} from './full-viewing.js';
+import { createPhotoDescriptions } from './data.js';
+import { addHandlerClickPreviews } from './full-viewing.js';
+import { CONTAINER_IMAGES_OTHER_USERS } from './const.js';
 
-const pictures =  document.querySelector('.pictures');
 const templatePreview = document.querySelector('#picture').content.querySelector('.picture');
 const previewsElementDescriptions = createPhotoDescriptions();
 const previewsFragment = document.createDocumentFragment();
@@ -17,4 +17,4 @@ previewsElementDescriptions.forEach((previewsElementDescription) => {
   previewsFragment.appendChild(previewsElement);
 });
 
-pictures.appendChild(previewsFragment);
+CONTAINER_IMAGES_OTHER_USERS.appendChild(previewsFragment);
