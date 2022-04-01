@@ -1,10 +1,13 @@
-import './upload-image.js';
-import {previewImages} from './previewing.js';
-//import './previewing.js';
+import './img-load-form-valid.js';
+import { createLoader, setPictureFormSubmit } from './api.js';
+import { previewPictures, picturePreviewError } from './previewing.js';
+import { onUploadPicture } from './img-load-form.js';
+import { showPictureLoadError, showPictureLoadSuccess } from './img-load-form-msg.js';
 
-fetch('https://25.javascript.pages.academy/kekstagram/data')
-  .then((response) => response.json())
-  .then((data) => {
-    //console.log(data);
-    previewImages(data);
-  });
+
+const uploadPreview = createLoader(previewPictures, picturePreviewError);
+setPictureFormSubmit(showPictureLoadSuccess, showPictureLoadError);
+
+uploadPreview();
+onUploadPicture();
+

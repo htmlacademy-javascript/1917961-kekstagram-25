@@ -1,24 +1,31 @@
-//import { createPhotoDescriptions } from './data.js';
 import { addHandlerClickPreviews } from './full-viewing.js';
-import { CONTAINER_IMAGES_OTHER_USERS } from './const.js';
+import { CONTAINER_IMAGES_OTHER_USERS, ERROR_SHOW_TIME } from './const.js';
 
 const templatePreview = document.querySelector('#picture').content.querySelector('.picture');
-//const previewsElementDescriptions = createPhotoDescriptions();
+const templatePreviewError = document.querySelector('#preview_error').content.querySelector('.error');
 const previewsFragment = document.createDocumentFragment();
 
-const previewImages = (previewsElementDescriptions) => {
+const previewPictures = (previewsElementDescriptions) => {
   previewsElementDescriptions.forEach((previewsElementDescription) => {
     const previewsElement = templatePreview.cloneNode(true);
-    const pictureImg = previewsElement.querySelector('.picture__img');
-    pictureImg.id = previewsElementDescription.id;
-    pictureImg.src = previewsElementDescription.url;
-    pictureImg.alt = previewsElementDescription.description;
+    const picture = previewsElement.querySelector('.picture__img');
+    picture.id = previewsElementDescription.id;
+    picture.src = previewsElementDescription.url;
+    picture.alt = previewsElementDescription.description;
     previewsElement.querySelector('.picture__comments').textContent = String(previewsElementDescription.comments.length);
     previewsElement.querySelector('.picture__likes').textContent = String(previewsElementDescription.likes);
-    //addHandlerClickPreviews(previewsElement, previewsElementDescription);
     previewsFragment.appendChild(previewsElement);
   });
   CONTAINER_IMAGES_OTHER_USERS.appendChild(previewsFragment);
+  addHandlerClickPreviews(previewsElementDescriptions);
 };
 
-export {previewImages};
+const picturePreviewError = () => {
+  const previewError = templatePreviewError.cloneNode(true);
+  CONTAINER_IMAGES_OTHER_USERS.appendChild(previewError);
+  setTimeout(() => {
+    CONTAINER_IMAGES_OTHER_USERS.removeChild(previewError);
+  }, ERROR_SHOW_TIME);
+};
+
+export { previewPictures, picturePreviewError };
