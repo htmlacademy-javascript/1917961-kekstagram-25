@@ -1,6 +1,6 @@
 import { isValidForm, prepareStringHashtags } from './img-load-form-valid.js';
 import { FORM_UPLOAD_PICTURE } from './const.js';
-
+import {blockSubmitButton, unblockSubmitButton} from './img-load-form.js';
 
 const createLoader = (onSuccess, onError) => () => {
   fetch('https://25.javascript.pages.academy/kekstagram/data',
@@ -27,6 +27,7 @@ const setPictureFormSubmit = (onSuccess, onError) => {
   FORM_UPLOAD_PICTURE.addEventListener('submit', (evt) => {
     evt.preventDefault();
     if (isValidForm) {
+      blockSubmitButton();
       const formData = new FormData(evt.target);
       formData.set('hashtags', prepareStringHashtags(formData.get('hashtags')));
       fetch(
@@ -39,12 +40,15 @@ const setPictureFormSubmit = (onSuccess, onError) => {
         .then((response) => {
           if (response.ok) {
             onSuccess();
+            unblockSubmitButton();
           } else {
             onError();
+            unblockSubmitButton();
           }
         })
         .catch(() => {
           onError();
+          unblockSubmitButton();
         });
     }
   });

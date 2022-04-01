@@ -7,6 +7,7 @@ import { onValidatorForm, cleanOffHashtagsAndComment } from './img-load-form-val
 const visibleFormUploadPicture = FORM_UPLOAD_PICTURE.querySelector('.img-upload__overlay');
 const uploadPicture = FORM_UPLOAD_PICTURE.querySelector('#upload-file');
 const buttonPictureUploadCancel = visibleFormUploadPicture.querySelector('.img-upload__cancel');
+const submitButton = FORM_UPLOAD_PICTURE.querySelector('.img-upload__submit');
 
 const onButtonCancelPictureUpload = () => {
   buttonPictureUploadCancel.addEventListener('click', () => {
@@ -48,4 +49,15 @@ const onUploadPicture = () => {
   });
 };
 
-export { openFormUploadPicture, closeFormUploadPicture, onFormUploadPictureEscKeydown, onUploadPicture };
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Сохраняю...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Сохранить';
+};
+
+export { openFormUploadPicture, closeFormUploadPicture, onFormUploadPictureEscKeydown, onUploadPicture,
+  blockSubmitButton, unblockSubmitButton };
