@@ -1,0 +1,32 @@
+
+.form__error {
+  display: block;
+  font-size: 0.85em;
+  color: #c00;
+}
+
+.preview__error__title {
+  position: relative;
+
+  margin: 0;
+  margin-bottom: 50px;
+
+  font-size: 22px;
+}
+
+.preview__error__title::before {
+  content: "";
+  position: absolute;
+
+  width: 59px;
+  height: 52px;
+
+  top: -100px;
+  left: 50%;
+
+  background-image: url("../img/icon-warning.svg");
+
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
