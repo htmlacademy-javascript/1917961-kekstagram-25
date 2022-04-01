@@ -1,9 +1,8 @@
 import { isEscapeKey } from './util.js';
-import { TAG_BODY, LOADER_COMMENTS, FULL_SCREEN_IMAGE_DISPLAY } from './const.js';
+import { BODY_KEKSOGRAM, LOADER_COMMENTS, FULL_SCREEN_IMAGE_DISPLAY, CONTAINER_IMAGES_OTHER_USERS } from './const.js';
 import { outputComment, onLoaderCommentsClick } from './comments.js';
 
 const buttonBigPictureCancel = FULL_SCREEN_IMAGE_DISPLAY.querySelector('.big-picture__cancel');
-
 
 const onBigPictureEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -29,21 +28,23 @@ function openBigPicture(picture, pictureDescription) {
   document.addEventListener('keydown', onBigPictureEscKeydown);
   buttonBigPictureCancel.addEventListener('click', onButtonBigPictureCancelClick);
   outputComment(pictureDescription);
-  TAG_BODY.classList.add('modal-open');
+  BODY_KEKSOGRAM.classList.add('modal-open');
 }
 
 function closeBigPicture() {
   document.removeEventListener('keydown', onBigPictureEscKeydown);
   buttonBigPictureCancel.removeEventListener('click', onButtonBigPictureCancelClick);
   LOADER_COMMENTS.removeEventListener('click', onLoaderCommentsClick);
-  TAG_BODY.classList.remove('modal-open');
+  BODY_KEKSOGRAM.classList.remove('modal-open');
 }
 
-const addHandlerClickPreviews = (previewsElement, bigPictureDescription) => {
-  previewsElement.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    fullBigPicture(FULL_SCREEN_IMAGE_DISPLAY, bigPictureDescription);
-    openBigPicture(FULL_SCREEN_IMAGE_DISPLAY, bigPictureDescription);
+const addHandlerClickPreviews = (bigPictureDescriptions) => {
+  CONTAINER_IMAGES_OTHER_USERS.addEventListener('click', (evt) => {
+    if (evt.target.matches('img.picture__img')) {
+      evt.preventDefault();
+      fullBigPicture(FULL_SCREEN_IMAGE_DISPLAY, bigPictureDescriptions[evt.target.id]);
+      openBigPicture(FULL_SCREEN_IMAGE_DISPLAY, bigPictureDescriptions[evt.target.id]);
+    }
   });
 };
 
