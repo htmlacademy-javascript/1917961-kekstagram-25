@@ -9,7 +9,7 @@ const onPictureLoadErrorEscKeydown = (msgTemplate) => function (evt) {
   }
 };
 
-const deletPictureLoadError = (elementSection) => {
+const deletePictureLoadError = (elementSection) => {
   elementSection.addEventListener('click', (evt) => {
     if (evt.target === elementSection || evt.target === elementSection.querySelector('button')) {
       BODY_KEKSOGRAM.removeChild(elementSection);
@@ -22,7 +22,7 @@ const showPictureLoad = (templatePictureLoad) => {
   closeFormUploadPicture();
   const msgPictureload = templatePictureLoad.cloneNode(true);
   BODY_KEKSOGRAM.appendChild(msgPictureload);
-  deletPictureLoadError(msgPictureload);
+  deletePictureLoadError(msgPictureload);
   document.addEventListener('keydown', onPictureLoadErrorEscKeydown(msgPictureload));
 };
 
