@@ -6,12 +6,12 @@ import { onFilterDiscussed, onFilterRandom, onFilterDefault } from './filters.js
 import { debounce } from './util.js';
 import { RERENDER_DELAY } from './const.js';
 
-const upload = createLoader((data) => {
+const uploadPreviews = createLoader((data) => {
   previewPictures(data);
   onFilterDefault(debounce(previewPictures, RERENDER_DELAY), data);
   onFilterRandom(debounce(previewPictures, RERENDER_DELAY), data);
   onFilterDiscussed(debounce(previewPictures, RERENDER_DELAY), data);
 }, picturePreviewError);
-upload();
+uploadPreviews();
 
 setPictureFormSubmit(showPictureLoadSuccess, showPictureLoadError);

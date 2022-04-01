@@ -1,4 +1,4 @@
-import { BODY_KEKSOGRAM, IMAGE_SCALE_DEFAULT, FORM_UPLOAD_PICTURE } from './const.js';
+import { BODY_KEKSOGRAM, IMAGE_SCALE_DEFAULT, FORM_UPLOAD_PICTURE, FILE_TYPES } from './const.js';
 import { isEscapeKey } from './util.js';
 import { addZoom, removeZoom, transformScale } from './zoom.js';
 import { addEffect, removeEffect } from './effect.js';
@@ -8,6 +8,8 @@ const visibleFormUploadPicture = FORM_UPLOAD_PICTURE.querySelector('.img-upload_
 const uploadPicture = FORM_UPLOAD_PICTURE.querySelector('#upload-file');
 const buttonPictureUploadCancel = visibleFormUploadPicture.querySelector('.img-upload__cancel');
 const submitButton = FORM_UPLOAD_PICTURE.querySelector('.img-upload__submit');
+const imgUploadPreview = FORM_UPLOAD_PICTURE.querySelector('.img-upload__preview img');
+
 
 const onButtonCancelPictureUpload = () => {
   buttonPictureUploadCancel.addEventListener('click', () => {
@@ -45,6 +47,12 @@ function closeFormUploadPicture() {
 
 const onUploadPicture = () => {
   uploadPicture.addEventListener('change', () => {
+    const file = uploadPicture.files[0];
+    const fileName = file.name.toLowerCase();
+    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    if (matches) {
+      imgUploadPreview.src = URL.createObjectURL(file);
+    }
     openFormUploadPicture();
   });
 };
@@ -59,5 +67,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-export { openFormUploadPicture, closeFormUploadPicture, onFormUploadPictureEscKeydown, onUploadPicture,
-  blockSubmitButton, unblockSubmitButton };
+export {
+  openFormUploadPicture, closeFormUploadPicture, onFormUploadPictureEscKeydown, onUploadPicture,
+  blockSubmitButton, unblockSubmitButton
+};
