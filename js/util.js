@@ -52,8 +52,16 @@ const movePointerToStart = (pictureDescription) => {
   pictureDescription.pointerViewComments = 0;
 };
 
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
 export {
   getRandomInteger, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray, removeAllChildren,
   isEscapeKey, deleteExcessSpase, checkValidateHashtag, checkUniqueHashtags, checkArrayLength,
-  checkLengthString, movePointerToStart
+  checkLengthString, movePointerToStart, debounce
 };

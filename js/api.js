@@ -1,6 +1,7 @@
 import { isValidForm, prepareStringHashtags } from './img-load-form-valid.js';
 import { FORM_UPLOAD_PICTURE } from './const.js';
 import {blockSubmitButton, unblockSubmitButton} from './img-load-form.js';
+import {showFilter} from './filters.js';
 
 const createLoader = (onSuccess, onError) => () => {
   fetch('https://25.javascript.pages.academy/kekstagram/data',
@@ -17,6 +18,7 @@ const createLoader = (onSuccess, onError) => () => {
     })
     .then((data) => {
       onSuccess(data);
+      showFilter(data);
     })
     .catch(() => {
       onError();
