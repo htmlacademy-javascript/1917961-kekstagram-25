@@ -7,8 +7,6 @@ import { onValidatorForm, cleanOffHashtagsAndComment } from './img-load-form-val
 const visibleFormUploadPicture = FORM_UPLOAD_PICTURE.querySelector('.img-upload__overlay');
 const uploadPicture = FORM_UPLOAD_PICTURE.querySelector('#upload-file');
 const buttonPictureUploadCancel = visibleFormUploadPicture.querySelector('.img-upload__cancel');
-const templatePictureLoadError = document.querySelector('#error').content.querySelector('.error');
-
 
 const onButtonCancelPictureUpload = () => {
   buttonPictureUploadCancel.addEventListener('click', () => {
@@ -50,13 +48,4 @@ const onUploadPicture = () => {
   });
 };
 
-const pictureLoadError = () => {
-  const loadError = templatePictureLoadError.cloneNode(true);
-  BODY_KEKSOGRAM.appendChild(loadError);
-};
-
-
-export {
-  openFormUploadPicture, closeFormUploadPicture, onFormUploadPictureEscKeydown, onUploadPicture,
-  pictureLoadError
-};
+export { openFormUploadPicture, closeFormUploadPicture, onFormUploadPictureEscKeydown, onUploadPicture };
