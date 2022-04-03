@@ -10,6 +10,7 @@ import { onFormUploadPictureEscKeydown } from './img-load-form.js';
 const inputHashtagsElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('#hashtags');
 const inputCommentElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('#add__comment');
 
+// eslint-disable-next-line no-trailing-spaces
 const pristine = new Pristine(IMG_FORM_UPLOAD_ELEMENT, {
   classTo: 'pristine__validate',
   errorClass: 'pristine__validate--invalid',
