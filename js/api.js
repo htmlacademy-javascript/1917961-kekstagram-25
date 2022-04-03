@@ -1,5 +1,5 @@
 import { isValidForm, prepareStringHashtags } from './img-load-form-valid.js';
-import { FORM_UPLOAD_PICTURE } from './const.js';
+import { IMG_FORM_UPLOAD_ELEMENT } from './const.js';
 import {blockSubmitButton, unblockSubmitButton} from './img-load-form.js';
 import {showFilter} from './filters.js';
 
@@ -26,7 +26,7 @@ const createLoader = (onSuccess, onError) => () => {
 };
 
 const setPictureFormSubmit = (onSuccess, onError) => {
-  FORM_UPLOAD_PICTURE.addEventListener('submit', (evt) => {
+  IMG_FORM_UPLOAD_ELEMENT.addEventListener('submit', (evt) => {
     evt.preventDefault();
     if (isValidForm) {
       blockSubmitButton();

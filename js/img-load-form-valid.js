@@ -1,16 +1,16 @@
 import {
   SPACE_AS_REGULAR_EXPRESSION, MAX_COUNT_HASHTAGS, LENGTH_COMMENT, OUTPUT_PRISTINE_MESSAGE_HASHTAGS,
-  FORM_UPLOAD_PICTURE, OUTPUT_PRISTINE_MESSAGE_COMMENT
+  IMG_FORM_UPLOAD_ELEMENT, OUTPUT_PRISTINE_MESSAGE_COMMENT
 } from './const.js';
 import {
   deleteExcessSpase, checkValidateHashtag, checkUniqueHashtags, checkArrayLength, checkLengthString
 } from './util.js';
 import { onFormUploadPictureEscKeydown } from './img-load-form.js';
 
-const inputHashtags = FORM_UPLOAD_PICTURE.querySelector('#hashtags');
-const inputComment = FORM_UPLOAD_PICTURE.querySelector('#add__comment');
+const inputHashtagsElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('#hashtags');
+const inputCommentElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('#add__comment');
 
-const pristine = new Pristine(FORM_UPLOAD_PICTURE, {
+const pristine = new Pristine(IMG_FORM_UPLOAD_ELEMENT, {
   classTo: 'pristine__validate',
   errorClass: 'pristine__validate--invalid',
   successClass: 'pristine__validate--valid',
@@ -49,17 +49,17 @@ const removeListenerKeydownEsc = () => {
 };
 
 const onValidatorForm = () => {
-  pristine.addValidator(inputHashtags, validateHashtags, OUTPUT_PRISTINE_MESSAGE_HASHTAGS);
-  pristine.addValidator(inputComment, validateComment, OUTPUT_PRISTINE_MESSAGE_COMMENT);
-  inputHashtags.addEventListener('focus', removeListenerKeydownEsc);
-  inputHashtags.addEventListener('blur', addListenerKeydownEsc);
-  inputComment.addEventListener('focus', removeListenerKeydownEsc);
-  inputComment.addEventListener('blur', addListenerKeydownEsc);
+  pristine.addValidator(inputHashtagsElement, validateHashtags, OUTPUT_PRISTINE_MESSAGE_HASHTAGS);
+  pristine.addValidator(inputCommentElement, validateComment, OUTPUT_PRISTINE_MESSAGE_COMMENT);
+  inputHashtagsElement.addEventListener('focus', removeListenerKeydownEsc);
+  inputHashtagsElement.addEventListener('blur', addListenerKeydownEsc);
+  inputCommentElement.addEventListener('focus', removeListenerKeydownEsc);
+  inputCommentElement.addEventListener('blur', addListenerKeydownEsc);
 };
 
 const cleanOffHashtagsAndComment = () => {
-  inputHashtags.value = '';
-  inputComment.value = '';
+  inputHashtagsElement.value = '';
+  inputCommentElement.value = '';
 };
 
 export { onValidatorForm, isValidForm, cleanOffHashtagsAndComment, prepareStringHashtags };

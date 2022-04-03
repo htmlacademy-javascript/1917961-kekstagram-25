@@ -7,10 +7,6 @@ const getRandomInteger = (beginInteger, endInteger) => {
 
 const checkLengthString = (stringCheck, maxLengthString) => maxLengthString >= stringCheck.length;
 
-const getRandomValueFromArray = (arrayFromGetValue) => arrayFromGetValue[getRandomInteger(0, arrayFromGetValue.length - 1)];
-
-const createArrayIndexInValue = (count) => Array.from({ length: count }, (value, key) => key + 1);
-
 const deleteRandomValueFromArray = (arrayFromGetIdentifier) => {
   const index = getRandomInteger(0, arrayFromGetIdentifier.length - 1);
   return arrayFromGetIdentifier.splice(index, 1)[0];
@@ -61,7 +57,6 @@ const debounce = (callback, timeoutDelay) => {
 };
 
 export {
-  getRandomInteger, getRandomValueFromArray, createArrayIndexInValue, deleteRandomValueFromArray, removeAllChildren,
-  isEscapeKey, deleteExcessSpase, checkValidateHashtag, checkUniqueHashtags, checkArrayLength,
-  checkLengthString, movePointerToStart, debounce
+  getRandomInteger, deleteRandomValueFromArray, removeAllChildren, isEscapeKey, deleteExcessSpase,
+  checkValidateHashtag, checkUniqueHashtags, checkArrayLength, checkLengthString, movePointerToStart, debounce
 };

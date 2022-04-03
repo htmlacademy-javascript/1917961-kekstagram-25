@@ -1,18 +1,18 @@
-import { BODY_KEKSOGRAM, IMAGE_SCALE_DEFAULT, FORM_UPLOAD_PICTURE, FILE_TYPES } from './const.js';
+import { BODY_ELEMENT, IMG_SCALE_DEFAULT, IMG_FORM_UPLOAD_ELEMENT, TYPES_FILES } from './const.js';
 import { isEscapeKey } from './util.js';
 import { addZoom, removeZoom, transformScale } from './zoom.js';
 import { addEffect, removeEffect } from './effect.js';
 import { onValidatorForm, cleanOffHashtagsAndComment } from './img-load-form-valid.js';
 
-const visibleFormUploadPicture = FORM_UPLOAD_PICTURE.querySelector('.img-upload__overlay');
-const uploadPicture = FORM_UPLOAD_PICTURE.querySelector('#upload-file');
-const buttonPictureUploadCancel = visibleFormUploadPicture.querySelector('.img-upload__cancel');
-const submitButton = FORM_UPLOAD_PICTURE.querySelector('.img-upload__submit');
-const imgUploadPreview = FORM_UPLOAD_PICTURE.querySelector('.img-upload__preview img');
+const visibleFormUploadPictureElment = IMG_FORM_UPLOAD_ELEMENT.querySelector('.img-upload__overlay');
+const uploadPictureElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('#upload-file');
+const buttonPictureUploadCancelElement = visibleFormUploadPictureElment.querySelector('.img-upload__cancel');
+const submitButtonElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('.img-upload__submit');
+const imgUploadPreviewElement = IMG_FORM_UPLOAD_ELEMENT.querySelector('.img-upload__preview img');
 
 
 const onButtonCancelPictureUpload = () => {
-  buttonPictureUploadCancel.addEventListener('click', () => {
+  buttonPictureUploadCancelElement.addEventListener('click', () => {
     closeFormUploadPicture();
   });
 };
@@ -24,47 +24,47 @@ const onFormUploadPictureEscKeydown = (evt) => {
   }
 };
 
-function openFormUploadPicture() {
-  visibleFormUploadPicture.classList.remove('hidden');
+const openFormUploadPicture = () => {
+  visibleFormUploadPictureElment.classList.remove('hidden');
   document.addEventListener('keydown', onFormUploadPictureEscKeydown);
   onButtonCancelPictureUpload();
   onValidatorForm();
   addZoom();
   addEffect();
-  BODY_KEKSOGRAM.classList.add('modal-open');
-}
+  BODY_ELEMENT.classList.add('modal-open');
+};
 
 function closeFormUploadPicture() {
-  visibleFormUploadPicture.classList.add('hidden');
-  BODY_KEKSOGRAM.classList.remove('modal-open');
-  uploadPicture.value = '';
+  visibleFormUploadPictureElment.classList.add('hidden');
+  BODY_ELEMENT.classList.remove('modal-open');
+  uploadPictureElement.value = '';
   document.removeEventListener('keydown', onFormUploadPictureEscKeydown);
-  transformScale(IMAGE_SCALE_DEFAULT);
+  transformScale(IMG_SCALE_DEFAULT);
   cleanOffHashtagsAndComment();
   removeZoom();
   removeEffect();
 }
 
 const onUploadPicture = () => {
-  uploadPicture.addEventListener('change', () => {
-    const file = uploadPicture.files[0];
+  uploadPictureElement.addEventListener('change', () => {
+    const file = uploadPictureElement.files[0];
     const fileName = file.name.toLowerCase();
-    const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+    const matches = TYPES_FILES.some((it) => fileName.endsWith(it));
     if (matches) {
-      imgUploadPreview.src = URL.createObjectURL(file);
+      imgUploadPreviewElement.src = URL.createObjectURL(file);
     }
     openFormUploadPicture();
   });
 };
 
 const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = 'Публикую...';
+  submitButtonElement.disabled = true;
+  submitButtonElement.textContent = 'Публикую...';
 };
 
 const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = 'Опубликовать';
+  submitButtonElement.disabled = false;
+  submitButtonElement.textContent = 'Опубликовать';
 };
 
 export {
