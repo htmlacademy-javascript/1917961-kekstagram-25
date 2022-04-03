@@ -1,42 +1,45 @@
 import {
-  IMAGE_SCALE_STEP, IMAGE_SCALE_MAX, IMAGE_SCALE_MIN, IMAGE_UPLOAD, IMAGE_PREVIEW, RADIX_DECEMAL, ONE_HUNDRED_PRECENT
+  IMG_SCALE_STEP, IMG_SCALE_MAX, IMG_SCALE_MIN, IMG_UPLOAD_OVERLAY_ELEMENT, IMG_UPLOAD_PREVIEW_ELEMENT,
+  RADIX_DECEMAL, ONE_HUNDRED_PRECENT
 } from './const.js';
 
-const imgScale = IMAGE_UPLOAD.querySelector('.img-upload__scale');
-const scaleSmaller = imgScale.querySelector('.scale__control--smaller');
-const scaleBigger = imgScale.querySelector('.scale__control--bigger');
-const scaleValue = imgScale.querySelector('.scale__control--value');
-const imagePreview = IMAGE_PREVIEW.querySelector('img');
+const imgScaleElement = IMG_UPLOAD_OVERLAY_ELEMENT.querySelector('.img-upload__scale');
+const scaleSmallerElement = imgScaleElement.querySelector('.scale__control--smaller');
+const scaleBiggerElement = imgScaleElement.querySelector('.scale__control--bigger');
+const scaleValueElement = imgScaleElement.querySelector('.scale__control--value');
+const imagePreviewElement = IMG_UPLOAD_PREVIEW_ELEMENT.querySelector('img');
 
 const transformScale = (scale) => {
-  scaleValue.value = `${scale}%`;
-  imagePreview.style.transform = `scale(${scale / ONE_HUNDRED_PRECENT})`;
+  scaleValueElement.value = `${scale}%`;
+  imagePreviewElement.style.transform = `scale(${scale / ONE_HUNDRED_PRECENT})`;
 };
 
-const scaleValueInt = () => parseInt(scaleValue.value, RADIX_DECEMAL);
+const scaleValueInt = () => parseInt(scaleValueElement.value, RADIX_DECEMAL);
 
 const onScaleSmaller = () => {
   let scaleInt = scaleValueInt();
-  if (!(scaleInt <= IMAGE_SCALE_MIN)) {
-    transformScale(scaleInt -= IMAGE_SCALE_STEP);
+  if (!(scaleInt <= IMG_SCALE_MIN)) {
+    scaleInt -= IMG_SCALE_STEP;
+    transformScale(scaleInt);
   }
 };
 
 const onScaleBigger = () => {
   let scaleInt = scaleValueInt();
-  if (!(scaleInt >= IMAGE_SCALE_MAX)) {
-    transformScale(scaleInt += IMAGE_SCALE_STEP);
+  if (!(scaleInt >= IMG_SCALE_MAX)) {
+    scaleInt += IMG_SCALE_STEP;
+    transformScale(scaleInt);
   }
 };
 
 const addZoom = () => {
-  scaleSmaller.addEventListener('click', onScaleSmaller);
-  scaleBigger.addEventListener('click', onScaleBigger);
+  scaleSmallerElement.addEventListener('click', onScaleSmaller);
+  scaleBiggerElement.addEventListener('click', onScaleBigger);
 };
 
 const removeZoom = () => {
-  scaleSmaller.removeEventListener('click', onScaleSmaller);
-  scaleBigger.removeEventListener('click', onScaleBigger);
+  scaleSmallerElement.removeEventListener('click', onScaleSmaller);
+  scaleBiggerElement.removeEventListener('click', onScaleBigger);
 };
 
 export { addZoom, removeZoom, transformScale };
